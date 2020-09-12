@@ -1,5 +1,7 @@
 import { parse } from "https://deno.land/std/flags/mod.ts";
-import {fetchAccessToken} from "./api/fetchAccessToken.ts";
+import { writeJson } from "https://deno.land/std/fs/mod.ts";
+import { fetchAccessToken } from "./api/fetchAccessToken.ts";
+import { fetchProjects } from "./api/fetchProjects.ts";
 
 const args = parse(Deno.args)
 
@@ -16,4 +18,10 @@ if (!PASSWORD || PASSWORD.length < 0) {
 
 const ACCESS_TOKEN = await fetchAccessToken(EMAIL, PASSWORD)
 
-console.log(ACCESS_TOKEN)
+const projects = await fetchProjects(ACCESS_TOKEN)
+
+writeJson(
+  "./projects.json",
+  projects,
+  { spaces: 2 }
+)
