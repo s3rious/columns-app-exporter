@@ -4,7 +4,7 @@ type FetchGQLBody = {
   operationName?: string,
 }
 
-const fetchGQL = async <T>(query: string, variables?: Object, operationName?: string): Promise<T> => {
+const fetchGQL = async <T>(query: string, accessToken?: string, variables?: Object, operationName?: string): Promise<T> => {
   const body: FetchGQLBody = {
     query,
   }
@@ -23,7 +23,7 @@ const fetchGQL = async <T>(query: string, variables?: Object, operationName?: st
     "headers": {
       "accept": "*/*",
       "accept-language": "en-GB,en;q=0.9",
-      "authorization": "null",
+      "authorization": accessToken ? `Bearer ${accessToken}` : "null",
       "content-type": "application/json",
       "sec-ch-ua": "\"\\\\Not;A\\\"Brand\";v=\"99\", \"Google Chrome\";v=\"85\", \"Chromium\";v=\"85\"",
       "sec-ch-ua-mobile": "?0",
