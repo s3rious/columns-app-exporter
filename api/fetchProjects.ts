@@ -1,4 +1,4 @@
-import { fetchGQL } from "./fetchGQL.ts";
+import { fetchGQL } from "./fetchGQL.ts"
 
 type Attachment = {
   type: string,

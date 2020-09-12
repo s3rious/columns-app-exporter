@@ -1,7 +1,7 @@
-import { parse } from "https://deno.land/std/flags/mod.ts";
-import { writeJson } from "https://deno.land/std/fs/mod.ts";
-import { fetchAccessToken } from "./api/fetchAccessToken.ts";
-import { fetchProjects } from "./api/fetchProjects.ts";
+import { parse } from "https://deno.land/std/flags/mod.ts"
+import { writeJson } from "https://deno.land/std/fs/mod.ts"
+import { fetchAccessToken } from "./api/fetchAccessToken.ts"
+import { fetchProjects } from "./api/fetchProjects.ts"
 
 const args = parse(Deno.args)
 
