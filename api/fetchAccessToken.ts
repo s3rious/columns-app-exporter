@@ -1,6 +1,6 @@
 import { fetchGQL } from "./fetchGQL.ts";
 
-type SignInResponse = {
+type Request = {
   data: {
     signin: {
       authToken: {
@@ -12,17 +12,18 @@ type SignInResponse = {
 }
 
 const fetchAccessToken = async (email: string, password: string): Promise<string> => {
-  const { data: { signin: { authToken: { accessToken } } } }: SignInResponse = await fetchGQL(
+  const request: Request = await fetchGQL(
     `
-    mutation SignInMutation($input: SigninInput!) {
-      signin(input: $input) {
-        authToken {
-          accessToken
-          tokenType
+      mutation SignInMutation($input: SigninInput!) {
+        signin(input: $input) {
+          authToken {
+            accessToken
+            tokenType
+          }
         }
       }
-    }
-  `,
+    `,
+    undefined,
     {
       input: {
         email,
@@ -32,7 +33,7 @@ const fetchAccessToken = async (email: string, password: string): Promise<string
     'SignInMutation',
   )
 
-  return accessToken
+  return request.data.signin.authToken.accessToken
 }
 
 export { fetchAccessToken }
