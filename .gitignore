@@ -1,2 +1,8 @@
 # IDE
 .idea
+
+# Dist
+dist.js
+
+# Output
+projects.json
